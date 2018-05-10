@@ -50,8 +50,9 @@ module.exports = function(opt) {
 
     // process the JSON
     var sassVariables = [];
-
-    loadVariablesRecursive(parsedJSON, '', function pushVariable(assignmentString) {
+    var images = parsedJSON.images;
+      console.log(images);
+    loadVariablesRecursive(images, '', function pushVariable(assignmentString) {
       sassVariables.push(assignmentString);
     });
 
