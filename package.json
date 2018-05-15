@@ -1,29 +1,71 @@
 {
-  "name": "gulp-json-sass",
-  "description": "Gulp plugin for turning JSON files into files of scss/sass variable definitions.",
-  "version": "0.0.2",
-  "scripts": {
-    "test": "npm run coverage && npm run rm",
-    "coverage": "istanbul cover test/*.js",
-    "rm": "rimraf ./coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rbalicki2/gulp-json-sass"
-  },
-  "keywords": [
-    "gulp",
-    "json",
-    "sass",
-    "scss",
-    "css"
+  "_args": [
+    [
+      {
+        "raw": "cgousley/json-images-to-sass",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "cgousley/json-images-to-sass",
+        "spec": "github:cgousley/json-images-to-sass",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:cgousley/json-images-to-sass.git",
+          "sshUrl": "git+ssh://git@github.com/cgousley/json-images-to-sass.git",
+          "httpsUrl": "git+https://github.com/cgousley/json-images-to-sass.git",
+          "gitUrl": "git://github.com/cgousley/json-images-to-sass.git",
+          "shortcut": "github:cgousley/json-images-to-sass",
+          "directUrl": "https://raw.githubusercontent.com/cgousley/json-images-to-sass/master/package.json"
+        }
+      }
+    ]
   ],
+  "_from": "cgousley/json-images-to-sass",
+  "_id": "gulp-json-sass@0.0.2",
+  "_inCache": true,
+  "_location": "/gulp-json-sass",
+  "_phantomChildren": {
+    "escape-string-regexp": "1.0.5",
+    "sigmund": "1.0.1"
+  },
+  "_requested": {
+    "raw": "cgousley/json-images-to-sass",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "cgousley/json-images-to-sass",
+    "spec": "github:cgousley/json-images-to-sass",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:cgousley/json-images-to-sass.git",
+      "sshUrl": "git+ssh://git@github.com/cgousley/json-images-to-sass.git",
+      "httpsUrl": "git+https://github.com/cgousley/json-images-to-sass.git",
+      "gitUrl": "git://github.com/cgousley/json-images-to-sass.git",
+      "shortcut": "github:cgousley/json-images-to-sass",
+      "directUrl": "https://raw.githubusercontent.com/cgousley/json-images-to-sass/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git://github.com/cgousley/json-images-to-sass.git#3124dd21d938cc8afb1e34968f6a8904cb895946",
+  "_shasum": "19a3475dbedd3e736af0b199262971e46f971774",
+  "_shrinkwrap": null,
+  "_spec": "cgousley/json-images-to-sass",
+  "_where": "D:\\repos\\wells-fargo\\scale-markets",
   "bugs": {
     "url": "https://github.com/rbalicki2/gulp-json-sass/issues"
   },
-  "homepage": "https://github.com/rbalicki2/gulp-json-sass",
-  "main": "index.js",
-  "license": "MIT",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "gulp-match": "^0.2.0",
+    "gulp-util": "^3.0.0",
+    "through": "^2.3.4"
+  },
+  "description": "Gulp plugin for turning JSON files into files of scss/sass variable definitions.",
   "devDependencies": {
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.4",
@@ -31,10 +73,29 @@
     "tape": "^2.14.0",
     "through2": "^0.5.1"
   },
-  "dependencies": {
-    "chalk": "^0.5.1",
-    "gulp-match": "^0.2.0",
-    "gulp-util": "^3.0.0",
-    "through": "^2.3.4"
-  }
+  "gitHead": "3124dd21d938cc8afb1e34968f6a8904cb895946",
+  "homepage": "https://github.com/cgousley/json-images-to-sass",
+  "keywords": [
+    "gulp",
+    "json",
+    "sass",
+    "scss",
+    "css"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "gulp-json-sass",
+  "optionalDependencies": {},
+  "readme": "# Gulp-json-sass\r\n\r\n> Gulp plugin for turning JSON files into files of scss/sass variable definitions.\r\n\r\n*Issues should be reported on the [issue tracker](https://github.com/rbalicki2/gulp-json-sass/issues).*\r\n\r\nThis JSON file can also be read by your Javascript. This will make it easier to keep your JS code used for layout and your CSS code in sync.\r\n\r\nSupports all JSON objects, including nested objects, arrays and keys which are not legal key names (variable names that begin with a number will be prefixed; variable names containing illegal characters will have those characters escaped.)\r\n\r\nIgnores (passes through) files with a extensions other than `.json`.\r\n\r\n## Installation\r\n\r\n```sh\r\nnpm install --save gulp-json-sass\r\n```\r\n\r\n## Example\r\n\r\nIn this example gulpfile, a JSON file is turned into a file of sass variables, concatenated with a sass file, and compiled using `gulp-ruby-sass`.\r\n\r\n```js\r\nvar jsonSass = require('gulp-json-sass'),\r\n    gulp = require('gulp'),\r\n    concat = require('gulp-concat'),\r\n    sass = require('gulp-ruby-sass');\r\n\r\ngulp.task('sass', function() {\r\n  return gulp\r\n    .src(['example.json', 'example.sass'])\r\n    .pipe(jsonSass({\r\n      sass: true\r\n    }))\r\n    .pipe(concat('output.sass'))\r\n    .pipe(sass())\r\n    .pipe(gulp.dest('out/'));\r\n});\r\n```\r\n\r\n## API\r\n\r\n### jsonSass(options)\r\n\r\nReturns: `stream`\r\n\r\n#### options\r\n\r\nType: `object`\r\n\r\n##### delim\r\n\r\nType: `string`  \r\nDefault: `-`\r\n\r\nString used to delimit nested objects. For example, if `delim` is `'-'`, then\r\n\r\n```js\r\n{\r\n  \"someObject\" : {\r\n    \"someKey\" : 123\r\n  }\r\n}\r\n```\r\n\r\nwill be converted into (in scss mode):\r\n\r\n```scss\r\n$someObject-someKey: 123;\r\n```\r\n\r\nNote that keys can contain the delimiter. No attempt is made to ensure that variable names are unique.\r\n\r\n##### Sass\r\n\r\nType: `boolean`  \r\nDefault: `false`\r\n\r\nIf truthy, output valid sass variables. If false, output scss variables.\r\n\r\n##### ignoreJsonErrors\r\n\r\nType: `boolean`  \r\nDefault: `false`\r\n\r\nIf true, malformed JSON does not result in the plugin emitting an error.\r\n\r\n##### escapeIllegalCharacters\r\n\r\nType: `boolean`  \r\nDefault: `true`\r\n\r\nIf true, escapes illegal characters in variable names with a backslash (`\\`). See http://stackoverflow.com/questions/17191265/legal-characters-for-sass-and-scss-variable-names\r\n\r\nThe following characters are escaped: `!\"#$%&'()*+,./:;<=>?@[]^{|}~` and white space.\r\n\r\n##### prefixFirstNumericCharacter\r\n\r\nType: `boolean`  \r\nDefault: `true`\r\n\r\nIf true, **top-level** keys that begin with a number will be prefixed with `options.firstCharacter`, but **not** keys of nested objects. For example,\r\n\r\n```js\r\n{\r\n  \"1maca\" : {\r\n    \"2maca\" : \"asdf\"\r\n  },\r\n  \"3maca\" : \"rena\"\r\n}\r\n```\r\n\r\nWill result in, in scss mode, with `options.firstCharacter` and `options.delim` left as the defaults:\r\n\r\n```scss\r\n$_1maca-2maca: asdf;\r\n$_3maca: rena;\r\n```\r\n\r\n##### firstCharacter\r\n\r\nType: `string`  \r\nDefault: `_`\r\n\r\nWhat string to use to prefix numeric top-level keys.\r\n\r\n## License\r\n\r\nMIT.",
+  "readmeFilename": "readme.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgousley/json-images-to-sass.git"
+  },
+  "scripts": {
+    "coverage": "istanbul cover test/*.js",
+    "rm": "rimraf ./coverage",
+    "test": "npm run coverage && npm run rm"
+  },
+  "version": "0.0.2"
 }
